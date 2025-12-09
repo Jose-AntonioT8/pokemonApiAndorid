@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.text.insert
 
 class PokemonRepositoryImpl @Inject constructor(
     @RemoteDataSource private val remoteDataSource: PokemonDataSource,
@@ -28,10 +29,18 @@ class PokemonRepositoryImpl @Inject constructor(
         return localDataSource.observe()
     }
 
-    private suspend fun refresh() {
+    override suspend fun delete(id: Long) {
+        localDataSource.delete(id)
+    }
+
+    override suspend fun refresh() {
         val resultRemotePokemon = remoteDataSource.readAll()
         if (resultRemotePokemon.isSuccess) {
             localDataSource.addAll(resultRemotePokemon.getOrNull()!!)
         }
+    }
+
+    override suspend fun insert(pokemon: Pokemon) {
+        localDataSource.insert(pokemon)
     }
 }

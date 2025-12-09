@@ -17,6 +17,11 @@ interface PokemonApi {
 
     @GET("/api/v2/pokemon/{name}")
     suspend fun readOne(@Path("name") name: String): Response<PokemonRemote>
+
+    @GET("/api/v2/pokemon/{id}")
+    suspend fun delete(@Path("id") id: Long)
+
+    suspend fun insert(character: PokemonRemote)
 }
 
 

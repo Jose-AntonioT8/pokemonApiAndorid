@@ -9,5 +9,7 @@ interface PokemonDataSource {
     suspend fun readAll(): Result<List<Pokemon>>
     suspend fun readOne(id: Long): Result<Pokemon>
     suspend fun isError()
+    suspend fun insert(pokemon: Pokemon)
 
+    suspend fun delete(id:Long)
 }

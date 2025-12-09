@@ -54,4 +54,17 @@ class PokemonLocalDataSource @Inject constructor(
         TODO("Not yet implemented")
     }
 
+    override suspend fun insert(pokemon: Pokemon) {
+        val entity = pokemon.toEntity()
+        pokemonDao.insert(entity)
+    }
+
+    override suspend fun delete(id: Long) {
+        pokemonDao.delete(readOne(id).toEntity())
+
+    }
+}
+
+private fun Result<Pokemon>.toEntity(): PokemonEntity {
+    return this.getOrThrow().toEntity()
 }

@@ -8,4 +8,10 @@ interface PokemonRepository {
     suspend fun readOne(id:Long): Result<Pokemon>
     suspend fun readAll(): Result<List<Pokemon>>
     fun observe(): Flow<Result<List<Pokemon>>>
+    suspend fun delete(id:Long)
+
+    suspend fun refresh()
+
+    suspend fun insert(pokemon: Pokemon)
+
 }

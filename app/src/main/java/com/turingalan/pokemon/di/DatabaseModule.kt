@@ -23,7 +23,8 @@ class DatabaseModule {
 
         val database = Room.databaseBuilder(context = applicationContext,
             PokemonDatabase::class.java,
-            name = "pokemon-db").build()
+            name = "pokemon-db").fallbackToDestructiveMigration(true)
+            .build()
         return database
     }
 

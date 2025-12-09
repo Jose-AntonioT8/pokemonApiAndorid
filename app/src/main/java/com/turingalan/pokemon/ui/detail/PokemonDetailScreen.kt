@@ -53,7 +53,11 @@ fun PokemonDetailScreen(
 //       )
             AsyncImage(contentDescription = name,
                 model = artwork)
+
+
         }
+
+
     }
 
 }
